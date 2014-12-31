@@ -12,13 +12,19 @@ namespace DungeonCreatorTestArea
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public static Model CORNER_BRICK;
-        public static Model SIDE_BRICK;
+        public static Model CORNER_TOP_RIGHT_BRICK;
+        public static Model CORNER_TOP_LEFT_BRICK;
+        public static Model CORNER_BOTTOM_RIGHT_BRICK;
+        public static Model CORNER_BOTTOM_LEFT_BRICK;
+        public static Model SIDE_TOP_BRICK;
+        public static Model SIDE_LEFT_BRICK;
+        public static Model SIDE_RIGHT_BRICK;
+        public static Model SIDE_BOTTOM_BRICK;
         public static Model MIDDLE_BRICK;
 
         KeyboardState currentKeyboardState = new KeyboardState();
 
-        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 1, 10000f);
+        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 1, 1000f);
         private Room room;
         float cameraArc = -90;
         float cameraRotation = 0;
@@ -52,11 +58,17 @@ namespace DungeonCreatorTestArea
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            CORNER_BRICK = Content.Load<Model>("corner_brick");
-            SIDE_BRICK = Content.Load<Model>("side_brick");
-            MIDDLE_BRICK = Content.Load<Model>("middle_brick");
+            MIDDLE_BRICK = Content.Load<Model>("basicModels/middle_brick");
+            CORNER_TOP_RIGHT_BRICK = Content.Load<Model>("basicModels/corner_top_right_brick");
+            CORNER_TOP_LEFT_BRICK = Content.Load<Model>("basicModels/corner_top_left_brick");
+            CORNER_BOTTOM_RIGHT_BRICK = Content.Load<Model>("basicModels/corner_bottom_right_brick");
+            CORNER_BOTTOM_LEFT_BRICK = Content.Load<Model>("basicModels/corner_bottom_left_brick");
+            SIDE_TOP_BRICK = Content.Load<Model>("basicModels/side_top_brick");
+            SIDE_LEFT_BRICK = Content.Load<Model>("basicModels/side_left_brick");
+            SIDE_RIGHT_BRICK = Content.Load<Model>("basicModels/side_right_brick");
+            SIDE_BOTTOM_BRICK = Content.Load<Model>("basicModels/side_bottom_brick");
             //adjust the size of the room here
-            room = RoomFactory.buildRoom(projection,4, 4);
+            room = RoomFactory.buildRoom(projection,2, 5);
         }
 
         /// <summary>
@@ -104,26 +116,6 @@ namespace DungeonCreatorTestArea
 
 
             base.Draw(gameTime);
-        }
-        private void DrawModel(Model model, Matrix world, Matrix view, Matrix projection)
-        {
-
-            Matrix[] transforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(transforms);  
-            foreach (ModelMesh mesh in model.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-
-                    effect.EnableDefaultLighting();
-                    effect.World = transforms[mesh.ParentBone.Index] * world;
-
-                    effect.View = view;
-                    effect.Projection = projection;
-                }
-
-                mesh.Draw();
-            }
         }
         /// <summary>
         /// Handles input for quitting the game.

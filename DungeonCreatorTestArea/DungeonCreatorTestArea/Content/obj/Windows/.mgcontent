@@ -4,8 +4,14 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/corner_brick.FBX</File>
-    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/middle_brick.FBX</File>
-    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/side_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/middle_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/side_bottom_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/side_left_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/side_right_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/side_top_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/corner_bottom_left_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/corner_bottom_right_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/corner_top_left_brick.FBX</File>
+    <File>C:/Users/Josh/Desktop/Repos/TestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/corner_top_right_brick.FBX</File>
   </SourceFiles>
 </SourceFileCollection>

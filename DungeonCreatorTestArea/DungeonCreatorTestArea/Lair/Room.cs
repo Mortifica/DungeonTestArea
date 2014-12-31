@@ -18,7 +18,6 @@ namespace DungeonCreatorTestArea.Lair
         {
             set { sections = value; }
         }
-        
 
         public Room(int width, int length)
         {
