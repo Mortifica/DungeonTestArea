@@ -60,3 +60,4 @@ C:\Users\Josh\Desktop\Repos\TestArea\DungeonCreatorTestArea\DungeonCreatorTestAr
 C:\Users\Josh\Desktop\Repos\TestArea\DungeonCreatorTestArea\DungeonCreatorTestArea\bin\Windows\Debug\Content\basicModels\side_left_brick.xnb
 C:\Users\Josh\Desktop\Repos\TestArea\DungeonCreatorTestArea\DungeonCreatorTestArea\bin\Windows\Debug\Content\basicModels\side_right_brick.xnb
 C:\Users\Josh\Desktop\Repos\TestArea\DungeonCreatorTestArea\DungeonCreatorTestArea\bin\Windows\Debug\Content\basicModels\side_top_brick.xnb
+C:\Users\Josh\Desktop\Repos\TestArea\DungeonCreatorTestArea\DungeonCreatorTestArea\bin\Windows\Debug\Content\basicModels\thingy.xnb
