@@ -18,7 +18,24 @@ namespace DungeonCreatorTestArea.Lair
         {
             set { sections = value; }
         }
-
+        private Vector3 entrance;
+        public Vector3 Entrance
+        {
+            get { return entrance; }
+            set { entrance = value; }
+        }
+        private Vector3 exit;
+        public Vector3 Exit
+        {
+            get { return exit; }
+            set { exit = value; }
+        }
+        private Vector3 nextRoom;
+        public Vector3 NextRoom
+        {
+            get { return nextRoom; }
+            set { nextRoom = value; }
+        }
         public Room(int width, int length)
         {
             this.width = width;

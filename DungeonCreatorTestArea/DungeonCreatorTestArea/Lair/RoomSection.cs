@@ -24,6 +24,7 @@ namespace DungeonCreatorTestArea.Lair
         {
             Matrix[] transforms = new Matrix[section.Bones.Count];
             section.CopyAbsoluteBoneTransformsTo(transforms);
+
             foreach (ModelMesh mesh in section.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
@@ -34,6 +35,13 @@ namespace DungeonCreatorTestArea.Lair
 
                     effect.View = view;
                     effect.Projection = projection;
+                    effect.PreferPerPixelLighting = true;
+
+                    // Set the fog to match the black background color
+                    //effect.FogEnabled = true;
+                    //effect.FogColor = Vector3.Zero;
+                    //effect.FogStart = 1000;
+                    //effect.FogEnd = 3200;
                 }
 
                 mesh.Draw();

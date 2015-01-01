@@ -26,19 +26,12 @@ namespace DungeonCreatorTestArea
 
         #region Properties
 
-        /// <summary>
-        /// The position of the tank. The camera will use this value to position itself.
-        /// </summary>
         public Vector3 Position
         {
             get { return position; }
         }
         private Vector3 position;
 
-        /// <summary>
-        /// The direction that the tank is facing, in radians. This value will be used
-        /// to position and and aim the camera.
-        /// </summary>
         public float FacingDirection
         {
             get { return facingDirection; }
@@ -54,10 +47,8 @@ namespace DungeonCreatorTestArea
         // The thingy's model
         Model model = Game1.THINGY;
 
-        // how is the thingy oriented? We'll calculate this based on the user's input and
-        // the heightmap's normals, and then use it when drawing.
         Matrix orientation = Matrix.Identity;
-
+        Matrix world;
         #endregion
 
 
@@ -82,7 +73,7 @@ namespace DungeonCreatorTestArea
         /// It'll move the thingy around the heightmap, and update all of the thingy's 
         /// necessary state.
         /// </summary>
-        public void HandleInput(KeyboardState currentKeyboardState)
+        public void HandleInput(KeyboardState currentKeyboardState, MouseState currentMouseState)
         {
             // First, we want to check to see if the thingy should turn. turnAmount will 
             // be an accumulation of all the different possible inputs.
@@ -104,68 +95,44 @@ namespace DungeonCreatorTestArea
 
 
             // Next, we want to move the thingy forward or back. to do this, 
-            // we'll create a Vector3 and modify use the user's input to modify the Z
+            // we'll create a Vector3 and modify use the user's input to modify the X
             // component, which corresponds to the forward direction.
             Vector3 movement = Vector3.Zero;
 
             if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
             {
-                movement.X = -1;
+                movement.X = 1;
             }
             if (currentKeyboardState.IsKeyDown(Keys.S) || currentKeyboardState.IsKeyDown(Keys.Down))
             {
-                movement.X = 1;
+                movement.X = -1;
             }
 
             // next, we'll create a rotation matrix from the direction the thingy is 
             // facing, and use it to transform the vector.
-            orientation = Matrix.CreateRotationZ(FacingDirection);
+            orientation = Matrix.CreateRotationZ(FacingDirection - MathHelper.Pi);
             Vector3 velocity = Vector3.Transform(movement, orientation);
             velocity *= ThingyVelocity;
 
-            // Now we know how much the user wants to move. We'll construct a temporary
-            // vector, newPosition, which will represent where the user wants to go. If
-            // that value is on the heightmap, we'll allow the move.
             Vector3 newPosition = Position + velocity;
+
             position = newPosition;
-            //if (true)
-            //{
-            //    // now that we know we're on the heightmap, we need to know the correct
-            //    // height and normal at this position.
-            //    Vector3 normal = Vector3.Zero;
-
-            //    orientation.Up = normal;
-
-            //    orientation.Right = Vector3.Cross(orientation.Forward, orientation.Up);
-            //    orientation.Right = Vector3.Normalize(orientation.Right);
-
-            //    orientation.Forward = Vector3.Cross(orientation.Up, orientation.Right);
-            //    orientation.Forward = Vector3.Normalize(orientation.Forward);
-
-            //    // once we've finished all computations, we can set our position to the
-            //    // new position that we calculated.
-               
-            //}
         }
 
         public void Draw(Matrix viewMatrix, Matrix projectionMatrix)
         {
 
-            // now that we've updated the wheels' transforms, we can create an array
-            // of absolute transforms for all of the bones, and then use it to draw.
             Matrix[] boneTransforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(boneTransforms);
 
-            // calculate the tank's world matrix, which will be a combination of our
-            // orientation and a translation matrix that will put us at at the correct
-            // position.
-            Matrix worldMatrix = orientation * Matrix.CreateTranslation(Position);
+            //multiply the orientation matrix by the translated(position) matrix to get the world matrix
+            world = orientation * Matrix.CreateTranslation(Position);
 
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.World = boneTransforms[mesh.ParentBone.Index] * worldMatrix;
+                    effect.World = boneTransforms[mesh.ParentBone.Index] * world;
                     effect.View = viewMatrix;
                     effect.Projection = projectionMatrix;
 
@@ -173,10 +140,10 @@ namespace DungeonCreatorTestArea
                     effect.PreferPerPixelLighting = true;
 
                     // Set the fog to match the black background color
-                    effect.FogEnabled = true;
-                    effect.FogColor = Vector3.Zero;
-                    effect.FogStart = 1000;
-                    effect.FogEnd = 3200;
+                    //effect.FogEnabled = true;
+                    //effect.FogColor = Vector3.Zero;
+                    //effect.FogStart = 100;
+                    //effect.FogEnd = 320;
                 }
                 mesh.Draw();
             }
