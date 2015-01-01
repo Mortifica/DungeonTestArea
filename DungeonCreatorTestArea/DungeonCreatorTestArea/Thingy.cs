@@ -68,11 +68,6 @@ namespace DungeonCreatorTestArea
 
         #region Update and Draw
 
-        /// <summary>
-        /// This function is called when the game is Updating in response to user input.
-        /// It'll move the thingy around the heightmap, and update all of the thingy's 
-        /// necessary state.
-        /// </summary>
         public void HandleInput(KeyboardState currentKeyboardState, MouseState currentMouseState)
         {
             // First, we want to check to see if the thingy should turn. turnAmount will 
