@@ -16,24 +16,25 @@ namespace DungeonCreatorTestArea.Lair
             List<Room> rooms = new List<Room>();
             Room currentRoom;
             Vector3 topLeftVector = Vector3.Zero; // sets vector to (0,0,0)
+            Vector4 roomEntrance = Vector4.Zero; // sets vector to (0,0,0,0)
             Vector4 roomExit = Vector4.Zero; // sets vector to (0,0,0,0)
             Vector4 nextRoomEntrance = Vector4.Zero; // sets vector to (0,0,0,0)
             int width;
             int length;
             int exitRow;
-            for (int i = 0; i <= numberOfRooms; i++)
+            for (int i = 0; i < numberOfRooms; i++)
             {
                 //makes a long room
                 if (random.Next(2) == 1)
                 {
-                    width = random.Next(4) + 1;
+                    width = random.Next(4) + 2;
                     length = random.Next(4) + 4;
                 }
                 //makes a wide room
                 else
                 {
                     width = random.Next(4) + 4;
-                    length = random.Next(4) + 1;
+                    length = random.Next(4) + 2;
                 }
                 //need to find the rom of the exit of the room
                 exitRow = random.Next(length) + 1;
@@ -75,8 +76,11 @@ namespace DungeonCreatorTestArea.Lair
                 }
 
 
-                currentRoom = RoomFactory.buildRoom(projection, width, length, topLeftVector, roomExit);
+                currentRoom = RoomFactory.buildRoom(projection, width, length, topLeftVector, roomEntrance, roomExit);
                 rooms.Add(currentRoom);
+
+                // need to adjust topLeftcorner
+
 
             }
 

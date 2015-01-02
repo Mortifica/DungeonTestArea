@@ -21,9 +21,9 @@ namespace DungeonCreatorTestArea.Lair
         private static Model sidebottomSection = Game1.SIDE_BOTTOM_BRICK;
         private static Model middleSection = Game1.MIDDLE_BRICK;
 
-         public static Room buildRoom(Matrix projection, int width, int length, Vector3 topLeftCorner, Vector4 exit)
+         public static Room buildRoom(Matrix projection, int width, int length, Vector3 topLeftCorner, Vector4 entrance, Vector4 exit)
         {
-            Vector3 currentVector = new Vector3(0, 0, 0);
+            Vector3 currentVector = topLeftCorner;
             Matrix world;
             Room result = new Room(width, length);
             RoomSection[,] room = new RoomSection[width, length];

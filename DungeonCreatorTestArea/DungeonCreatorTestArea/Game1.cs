@@ -34,7 +34,7 @@ namespace DungeonCreatorTestArea
         private MouseState currentMouseState = new MouseState();
         private Thingy thing;
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 1, 1000f);
-        //private Room room;
+
         private Level level;
         private float cameraRotation = 90;
         private Matrix view;
@@ -76,8 +76,7 @@ namespace DungeonCreatorTestArea
             SIDE_RIGHT_BRICK = Content.Load<Model>("basicModels/side_right_brick");
             SIDE_BOTTOM_BRICK = Content.Load<Model>("basicModels/side_bottom_brick");
             THINGY = Content.Load<Model>("basicModels/thingy");
-            //adjust the size of the room here
-            //room = RoomFactory.buildRoom(projection,6, 5, Vector3.Zero);
+            //adjust the size of the level here
             level = LevelFactory.buildLevel(projection, 3);
             thing = new Thingy();
         }
