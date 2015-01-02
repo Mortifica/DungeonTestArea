@@ -9,8 +9,8 @@ namespace DungeonCreatorTestArea.Lair
 {
     class RoomFactory
     {
+        public static int VECTOR_CHANGE = -60;
         private static Random random = new Random();
-        private static int VECTOR_CHANGE = -60;
         private static Model cornertopleftSection = Game1.CORNER_TOP_LEFT_BRICK;
         private static Model cornertoprightSection = Game1.CORNER_TOP_RIGHT_BRICK;
         private static Model cornerbottomleftSection = Game1.CORNER_BOTTOM_LEFT_BRICK;
@@ -21,7 +21,7 @@ namespace DungeonCreatorTestArea.Lair
         private static Model sidebottomSection = Game1.SIDE_BOTTOM_BRICK;
         private static Model middleSection = Game1.MIDDLE_BRICK;
 
-         public static Room buildRoom(Matrix projection, int width, int length, Vector3 entrance)
+         public static Room buildRoom(Matrix projection, int width, int length, Vector3 topLeftCorner, Vector4 exit)
         {
             Vector3 currentVector = new Vector3(0, 0, 0);
             Matrix world;
