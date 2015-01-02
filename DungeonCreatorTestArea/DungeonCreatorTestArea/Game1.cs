@@ -77,7 +77,7 @@ namespace DungeonCreatorTestArea
             SIDE_BOTTOM_BRICK = Content.Load<Model>("basicModels/side_bottom_brick");
             THINGY = Content.Load<Model>("basicModels/thingy");
             //adjust the size of the level here
-            level = LevelFactory.buildLevel(projection, 3);
+            level = LevelFactory.buildLevel(projection, 4);
             thing = new Thingy();
         }
 

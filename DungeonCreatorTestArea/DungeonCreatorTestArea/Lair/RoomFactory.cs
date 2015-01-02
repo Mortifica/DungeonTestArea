@@ -9,7 +9,7 @@ namespace DungeonCreatorTestArea.Lair
 {
     class RoomFactory
     {
-        public static int VECTOR_CHANGE = -60;
+        public static int VECTOR_CHANGE = 60;
         private static Random random = new Random();
         private static Model cornertopleftSection = Game1.CORNER_TOP_LEFT_BRICK;
         private static Model cornertoprightSection = Game1.CORNER_TOP_RIGHT_BRICK;
@@ -23,6 +23,7 @@ namespace DungeonCreatorTestArea.Lair
 
          public static Room buildRoom(Matrix projection, int width, int length, Vector3 topLeftCorner, Vector4 entrance, Vector4 exit)
         {
+            Console.WriteLine("Width/Length " + width + ", " + length);
             Vector3 currentVector = topLeftCorner;
             Matrix world;
             Room result = new Room(width, length);
@@ -41,23 +42,44 @@ namespace DungeonCreatorTestArea.Lair
                         if (j == 0)
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(cornertopleftSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(cornertopleftSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                         //top right corner roomSection
                         else if (j == length - 1)
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(cornertoprightSection, world, projection);
-                            currentVector.X = 0;
-                            currentVector.Y -= VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(cornertoprightSection, world, projection);
+                            }
+                            currentVector.X = topLeftCorner.X;
+                            currentVector.Y += VECTOR_CHANGE;
                         }
                         // middle of top row roomSection
                         else
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(sidetopSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(sidetopSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                     }
                     //bottom roomSection
@@ -68,21 +90,42 @@ namespace DungeonCreatorTestArea.Lair
                         {
                             
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(cornerbottomleftSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(cornerbottomleftSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                         //bottom right corner roomSection
                         else if (j == length - 1)
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(cornerbottomrightSection, world, projection);
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(cornerbottomrightSection, world, projection);
+                            }
                         }
                         // middle of bottom row roomSection
                         else
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(sidebottomSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(sidebottomSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                     }
                     //middle roomSection
@@ -92,23 +135,44 @@ namespace DungeonCreatorTestArea.Lair
                         if (j == 0)
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(sideleftSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(sideleftSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                         //middle right roomSection
                         else if (j == length - 1)
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(siderightSection, world, projection);
-                            currentVector.X = 0;
-                            currentVector.Y -= VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(siderightSection, world, projection);
+                            }
+                            currentVector.X = topLeftCorner.X;
+                            currentVector.Y += VECTOR_CHANGE;
                         }
                         // middle of middle row roomSection
                         else
                         {
                             world = Matrix.CreateTranslation(currentVector);
-                            tempSection = new RoomSection(middleSection, world, projection);
-                            currentVector.X += VECTOR_CHANGE;
+                            if ((currentVector.X == entrance.X && currentVector.Y == entrance.Y) || (currentVector.X == exit.X && currentVector.Y == exit.Y))
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            else
+                            {
+                                tempSection = new RoomSection(middleSection, world, projection);
+                            }
+                            currentVector.X -= VECTOR_CHANGE;
                         }
                     }
                    room[i, j] = tempSection; 
