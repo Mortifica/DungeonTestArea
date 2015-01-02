@@ -24,6 +24,7 @@ namespace DungeonCreatorTestArea.Lair
             int exitRow;
             int entranceRow;
             int entranceColumn;
+            bool isUp = true;
             //makes a long room initallizes to first room if the level
             if (random.Next(2) == 1)
             {
@@ -41,22 +42,29 @@ namespace DungeonCreatorTestArea.Lair
                 roomEntrance = nextRoomEntrance;
                 //need to find the row of the exit of the room
                 exitRow = random.Next(width);
-                // if the row is on the top or bottom does it exit going up or down
+                // need to find if next room joins on top or bottom or right side
                 int upOrDown = random.Next(2);
-                if(upOrDown == 1) //if the row is top and random is == 1 then exit is going up
-                {
-                    exitRow = 0;
-                    roomExit.W = 1;// 1; //use the 4th part of this vetor to say the direction.  1 is going up
-                }
-               // else if(exitRow == width - 1 && upOrDown == 1)//bottom row and random is == 1 the exit is going down
-                //{
-                //    roomExit.W = 1;// -1; //use the 4th part of this vetor to say the direction.  -1 is going down
-                //}
+
+               if(upOrDown == 1)
+               {
+                   if (isUp)
+                   {
+                        exitRow = 0;
+                        roomExit.W = 1;// 1; //use the 4th part of this vetor to say the direction.  1 is going up
+                        
+                   }
+                   else
+                   {
+                        exitRow = width - 1;
+                        roomExit.W = -1; //use the 4th part of this vetor to say the direction.  -1 is going down
+                   }
+                   isUp = !isUp;
+                  
+               }
                 else//exit is going right
                 {
                     roomExit.W = 0;// 0; //use the 4th part of this vetor to say the direction.  0 is going right
                 }
-                Console.WriteLine("Room " + i + "'s W is " + roomExit.W);
                 roomExit.X = topLeftVector.X - (length - 1) * RoomFactory.VECTOR_CHANGE;
                 //we will find the column of the exit if the room is wider than 2
                 if(length > 2)
@@ -98,18 +106,18 @@ namespace DungeonCreatorTestArea.Lair
                 //makes a long room initallizes to first room if the level
                 if (random.Next(2) == 1)
                 {
-                    width = random.Next(5) + 2;
-                    length = random.Next(10) + 6;
+                    width = random.Next(3) + 7;
+                    length = random.Next(3) + 10;
                 }
                 //makes a wide room
                 else
                 {
-                    width = random.Next(5) + 6;
-                    length = random.Next(10) + 2;
+                    width = random.Next(3) + 10;
+                    length = random.Next(3) + 7;
                 }
                 //need to find the column the entrance of next room is in, but only if the room's entrance is 
                 //going up or down not to the right
-                entranceColumn = random.Next(2 , length);
+                entranceColumn = random.Next(6 , length);
 
                 entranceRow = random.Next(width);
                 // need to adjust topLeftcorner
@@ -121,7 +129,7 @@ namespace DungeonCreatorTestArea.Lair
                 else if(nextRoomEntrance.W < 0)
                 {
                     topLeftVector.Y = nextRoomEntrance.Y;
-                    topLeftVector.X = nextRoomEntrance.X - ((length - entranceColumn) * RoomFactory.VECTOR_CHANGE);
+                    topLeftVector.X = nextRoomEntrance.X + ((length - entranceColumn) * RoomFactory.VECTOR_CHANGE);
                 }
                 else
                 {
