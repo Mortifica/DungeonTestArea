@@ -43,7 +43,7 @@ namespace DungeonCreatorTestArea.Lair
                 //need to find the row of the exit of the room
                 exitRow = random.Next(width);
                 // need to find if next room joins on top or bottom or right side
-                int upOrDown = random.Next(2);
+                int upOrDown = random.Next(3);//higher number is more change to go straight
 
                if(upOrDown == 1)
                {
