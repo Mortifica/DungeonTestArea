@@ -42,23 +42,26 @@ namespace DungeonCreatorTestArea.Lair
                 //need to find the row of the exit of the room
                 exitRow = random.Next(width);
                 // if the row is on the top or bottom does it exit going up or down
-                if(exitRow == 0 && random.Next(2) == 1) //if the row is top and random is == 1 then exit is going up
+                int upOrDown = random.Next(2);
+                if(upOrDown == 1) //if the row is top and random is == 1 then exit is going up
                 {
-                    roomExit.W = 0;// 1; //use the 4th part of this vetor to say the direction.  1 is going up
+                    exitRow = 0;
+                    roomExit.W = 1;// 1; //use the 4th part of this vetor to say the direction.  1 is going up
                 }
-                else if(exitRow == width && random.Next(2) == 1)//bottom row and random is == 1 the exit is going down
-                {
-                    roomExit.W = 0;// -1; //use the 4th part of this vetor to say the direction.  -1 is going down
-                }
+               // else if(exitRow == width - 1 && upOrDown == 1)//bottom row and random is == 1 the exit is going down
+                //{
+                //    roomExit.W = 1;// -1; //use the 4th part of this vetor to say the direction.  -1 is going down
+                //}
                 else//exit is going right
                 {
                     roomExit.W = 0;// 0; //use the 4th part of this vetor to say the direction.  0 is going right
                 }
+                Console.WriteLine("Room " + i + "'s W is " + roomExit.W);
                 roomExit.X = topLeftVector.X - (length - 1) * RoomFactory.VECTOR_CHANGE;
                 //we will find the column of the exit if the room is wider than 2
-                if(width > 2)
+                if(length > 2)
                 {
-                    roomExit.W *= (random.Next(length)); //if the W was 0 to start with it will remain 0
+                    //roomExit.W *= random.Next(2, length); //if the W was 0 to start with it will remain 0
                     //adjusts the roomExit.X 
                     if (roomExit.W > 0)
                     {
@@ -66,7 +69,7 @@ namespace DungeonCreatorTestArea.Lair
                     }
                     else if (roomExit.W < 0)
                     {
-                        roomExit.X = topLeftVector.X + (length + roomExit.W) * RoomFactory.VECTOR_CHANGE;
+                        roomExit.X = topLeftVector.X - (length + roomExit.W) * RoomFactory.VECTOR_CHANGE;
                     }
 
                 }
@@ -78,11 +81,11 @@ namespace DungeonCreatorTestArea.Lair
                 nextRoomEntrance.W = roomExit.W;
                 if(roomExit.W > 0)
                 {
-                    nextRoomEntrance.Y += RoomFactory.VECTOR_CHANGE;
+                    nextRoomEntrance.Y -= RoomFactory.VECTOR_CHANGE;
                 }
                 else if(roomExit.W < 0)
                 {
-                    nextRoomEntrance.Y -= RoomFactory.VECTOR_CHANGE;
+                    nextRoomEntrance.Y += RoomFactory.VECTOR_CHANGE;
                 }
                 else
                 {
@@ -106,14 +109,14 @@ namespace DungeonCreatorTestArea.Lair
                 }
                 //need to find the column the entrance of next room is in, but only if the room's entrance is 
                 //going up or down not to the right
-                entranceColumn = random.Next(length);
+                entranceColumn = random.Next(2 , length);
 
                 entranceRow = random.Next(width);
                 // need to adjust topLeftcorner
                 if (nextRoomEntrance.W > 0)//is W is > the entrance needs to be on the bottom row of next room
                 {
-                    topLeftVector.Y = nextRoomEntrance.Y -((width) * RoomFactory.VECTOR_CHANGE);
-                    topLeftVector.X = nextRoomEntrance.X -((length - entranceColumn) * RoomFactory.VECTOR_CHANGE);
+                    topLeftVector.Y = nextRoomEntrance.Y - ((width -1) * RoomFactory.VECTOR_CHANGE);
+                    topLeftVector.X = nextRoomEntrance.X + ((length - entranceColumn) * RoomFactory.VECTOR_CHANGE);
                 }
                 else if(nextRoomEntrance.W < 0)
                 {
