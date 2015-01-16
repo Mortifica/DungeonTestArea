@@ -9,7 +9,6 @@ namespace DungeonCreatorTestArea.Lair
     class Level
     {
         private List<Room> rooms;
-
         public Level(List<Room> rooms)
         {
             this.rooms = rooms;

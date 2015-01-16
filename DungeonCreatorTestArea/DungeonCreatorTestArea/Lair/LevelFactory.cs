@@ -12,31 +12,21 @@ namespace DungeonCreatorTestArea.Lair
 
         public static Level buildLevel(Matrix projection, int numberOfRooms)
         {
+
             Random random = new Random();
             List<Room> rooms = new List<Room>();
             Room currentRoom;
-            Vector3 topLeftVector = Vector3.Zero; // sets vector to (0,0,0)
-            Vector4 roomEntrance = Vector4.Zero; // sets vector to (0,0,0,0)
+            Vector3 topLeftVector = new Vector3(-500,5000,0); // sets vector to (0,0,0)
+            Vector4 roomEntrance = new Vector4(-500, 5060, 0, 0); // sets vector to (0,0,0,0)
             Vector4 roomExit = Vector4.Zero; // sets vector to (0,0,0,0)
             Vector4 nextRoomEntrance = Vector4.Zero; // sets vector to (0,0,0,0)
-            int width;
-            int length;
+            int width = 3;
+            int length = 5;
             int exitRow;
             int entranceRow;
             int entranceColumn;
             bool isUp = true;
-            //makes a long room initallizes to first room if the level
-            if (random.Next(2) == 1)
-            {
-                length = random.Next(4) + 4;
-                width = random.Next(4) + 2;
-            }
-            //makes a wide room
-            else
-            {
-                length = random.Next(4) + 2;
-                width = random.Next(4) + 4;
-            }
+
             for (int i = 0; i < numberOfRooms; i++)
             {
                 roomEntrance = nextRoomEntrance;
@@ -141,7 +131,7 @@ namespace DungeonCreatorTestArea.Lair
 
 
             }
-
+            //Level.collision = collision;
             return new Level(rooms);
         }
 

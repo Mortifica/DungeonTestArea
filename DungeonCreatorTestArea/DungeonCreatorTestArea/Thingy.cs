@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DungeonCreatorTestArea.Lair;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,7 +23,11 @@ namespace DungeonCreatorTestArea
 
 
         #endregion
-
+        private Level currentLevel;
+        public Level CurrentLevel
+        {
+            set { currentLevel = value; }
+        }
 
         #region Properties
 
@@ -30,7 +35,7 @@ namespace DungeonCreatorTestArea
         {
             get { return position; }
         }
-        private Vector3 position;
+        private Vector3 position = new Vector3(-500, 5060, 0);
 
         public float FacingDirection
         {
@@ -67,7 +72,31 @@ namespace DungeonCreatorTestArea
 
 
         #region Update and Draw
+        /*
+        private bool CheckForCollisions(Model c1, Model c2)
+        {
+            for (int i = 0; i < c1.Meshes.Count; i++)
+            {
+                // Check whether the bounding boxes of the two cubes intersect.
+                BoundingSphere c1BoundingSphere = c1.Meshes[i].BoundingSphere;
+                c1BoundingSphere.Center += c1.;
 
+                for (int j = 0; j < c2.model.Meshes.Count; j++)
+                {
+                    BoundingSphere c2BoundingSphere = c2.model.Meshes[j].BoundingSphere;
+                    c2BoundingSphere.Center += c2.position;
+
+                    if (c1BoundingSphere.Intersects(c2BoundingSphere))
+                    {
+                        c2.ReverseVelocity();
+                        c1.Backup();
+                        c1.ReverseVelocity();
+                        return;
+                    }
+                }
+            }
+        }
+        */
         public void HandleInput(KeyboardState currentKeyboardState, MouseState currentMouseState)
         {
             // First, we want to check to see if the thingy should turn. turnAmount will 
@@ -96,11 +125,15 @@ namespace DungeonCreatorTestArea
 
             if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
             {
+
                 movement.X = 1;
+                
             }
             if (currentKeyboardState.IsKeyDown(Keys.S) || currentKeyboardState.IsKeyDown(Keys.Down))
             {
+
                 movement.X = -1;
+                
             }
 
             // next, we'll create a rotation matrix from the direction the thingy is 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Josh_Mac/Source/Repos/DungeonTestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/middle_brick.FBX</SourceFile>
-  <SourceTime>2015-01-02T08:47:55.6984563-06:00</SourceTime>
-  <DestFile>C:/Users/Josh_Mac/Source/Repos/DungeonTestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/bin/Windows/basicModels/middle_brick.xnb</DestFile>
-  <DestTime>2015-01-02T08:49:55.1625176-06:00</DestTime>
+  <SourceFile>C:/Users/Josh/Desktop/Repos/DungeonTestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/basicModels/middle_brick.FBX</SourceFile>
+  <SourceTime>2015-01-02T19:29:57.7186943-06:00</SourceTime>
+  <DestFile>C:/Users/Josh/Desktop/Repos/DungeonTestArea/DungeonCreatorTestArea/DungeonCreatorTestArea/Content/bin/Windows/basicModels/middle_brick.xnb</DestFile>
+  <DestTime>2015-01-02T19:31:36.0383178-06:00</DestTime>
   <Importer>FbxImporter</Importer>
   <Processor>ModelProcessor</Processor>
   <Parameters>
