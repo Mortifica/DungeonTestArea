@@ -33,7 +33,7 @@ namespace DungeonCreatorTestArea
         private KeyboardState currentKeyboardState = new KeyboardState();
         private MouseState currentMouseState = new MouseState();
         private Thingy thing;
-        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 1, 1000f);
+        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 1, 10000f);
 
         private Level level;
         private float cameraRotation = 90;
