@@ -1,4 +1,5 @@
 ﻿using DungeonCreatorTestArea.Lair;
+using DungeonCreatorTestArea.TestingMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,8 @@ namespace DungeonCreatorTestArea
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+        private TMenu testingMenu;
+
 
         public static Model CORNER_TOP_RIGHT_BRICK;
         public static Model CORNER_TOP_LEFT_BRICK;
@@ -43,6 +46,7 @@ namespace DungeonCreatorTestArea
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -79,6 +83,7 @@ namespace DungeonCreatorTestArea
             //adjust the size of the level here
             level = LevelFactory.buildLevel(projection, 10);
             thing = new Thingy();
+            testingMenu = new TMenu(GraphicsDevice);
         }
 
         /// <summary>
@@ -117,7 +122,7 @@ namespace DungeonCreatorTestArea
             GraphicsDevice.Clear(Color.DarkGreen);
             level.drawLevel(view);
             thing.Draw(view, projection);
-
+            testingMenu.draw(spriteBatch);
             base.Draw(gameTime);
         }
         /// <summary>
@@ -132,6 +137,7 @@ namespace DungeonCreatorTestArea
             {
                 Exit();
             }
+            testingMenu.handleInput(currentKeyboardState, currentMouseState);
             thing.HandleInput(currentKeyboardState, currentMouseState);
         }
 

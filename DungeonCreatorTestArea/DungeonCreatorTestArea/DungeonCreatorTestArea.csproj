@@ -46,6 +46,7 @@
     <Compile Include="Lair\RoomSection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestingMenu\TMenu.cs" />
     <Compile Include="Thingy.cs" />
   </ItemGroup>
   <ItemGroup>
