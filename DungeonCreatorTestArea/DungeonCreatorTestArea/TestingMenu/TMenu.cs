@@ -8,6 +8,9 @@ using System.Text;
 
 namespace DungeonCreatorTestArea.TestingMenu
 {
+    /// <summary>
+    /// Used for Testing functions of Dungeon
+    /// </summary>
     public class TMenu
     {
         private bool isEnabled = false;
@@ -35,7 +38,9 @@ namespace DungeonCreatorTestArea.TestingMenu
             this.graphicsDevice = graphicsDevice;
             createMenu();
         }
-
+        /// <summary>
+        /// Creates the Menu
+        /// </summary>
         private void createMenu()
         {
             /*
@@ -69,6 +74,11 @@ namespace DungeonCreatorTestArea.TestingMenu
             backgroundBorder[6] = new VertexPositionColor(new Vector3(origin.X - inset, origin.Y + height + inset, 0), borderColor);
             backgroundBorder[7] = new VertexPositionColor(new Vector3(origin.X - inset, origin.Y - inset, 0), borderColor);
         }
+        /// <summary>
+        /// used to handle any inputs that the tmenu would handle
+        /// </summary>
+        /// <param name="currentKeyboardState"></param>
+        /// <param name="currentMouseState"></param>
         public void handleInput(KeyboardState currentKeyboardState, MouseState currentMouseState) 
         {
             //initializes the states if they are null
@@ -109,6 +119,10 @@ namespace DungeonCreatorTestArea.TestingMenu
             oldMouseState = currentMouseState;
 
         }
+        /// <summary>
+        /// changes the color of the background
+        /// </summary>
+        /// <param name="color"></param>
         private void setBackgroundColor(Color color)
         {
             for (int i = 0; i < background.Length; i++)
@@ -116,6 +130,12 @@ namespace DungeonCreatorTestArea.TestingMenu
                 background[i].Color = color;
             }
         }
+        /// <summary>
+        /// checks to see if a X and Y are inside of the menu
+        /// </summary>
+        /// <param name="pointX"></param>
+        /// <param name="pointY"></param>
+        /// <returns></returns>
         private bool IsPointInPolygon(int pointX, int pointY)
         {
 
@@ -134,10 +154,17 @@ namespace DungeonCreatorTestArea.TestingMenu
             }
             return isInside;
         }
+        /// <summary>
+        /// updates TMenu
+        /// </summary>
         public void update()
         {
 
         }
+        /// <summary>
+        /// Draws all Menu Components
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void draw(SpriteBatch spriteBatch)
         {
             if (IsEnabled)
